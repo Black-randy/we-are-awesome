@@ -1,0 +1,10 @@
+INSERT INTO user (name, address)
+VALUES ("Nimal", "No 15, Welisara");
+
+SELECT * FROM user;
+
+UPDATE user
+SET name = "Kamal", address = "No 1, Welisara"
+WHERE id =1;
+
+DELETE FROM user WHERE id =1;

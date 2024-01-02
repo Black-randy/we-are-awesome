@@ -1,0 +1,27 @@
+/* Styles for the wrapper section */
+.wrapper {
+    animation: scroll 200s linear infinite; /* Adjust the duration as needed for a slower speed */
+    background: url("../images/seemles/pizza-vector-seamless-001.png") center center/cover fixed, #111111;
+    color: #eee;
+    height: 100vh;
+    min-width: 360px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 100px;
+    perspective-origin: 100% 100%;
+}
+
+/* Fallback if the operating system prefers reduced motion*/
+@media (prefers-reduced-motion) {
+    .wrapper {
+        animation: scroll 10s linear infinite;
+    }
+}
+
+@keyframes scroll {
+    100% {
+        background-position: -50% 0px;
+    }
+}
