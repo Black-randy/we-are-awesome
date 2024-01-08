@@ -1,0 +1,113 @@
+.card {
+  width: 400px;
+  min-height: 250px;
+  background: rgba( 255, 255, 255, 0.15 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 18px );
+  -webkit-backdrop-filter: blur( 18px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border-radius: 1rem;
+  padding: 1.5rem;
+  z-index: 10;
+  color: whitesmoke;
+}
+
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  max-width: 300px; /* Adjusted to max-width instead of width */
+  width: 100%; /* Added width: 100% to make it flexible */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  text-align: center;
+  margin: 0 auto; /* Center the container */
+}
+
+.singup-glass-container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  max-width: 300px; /* Adjusted to max-width instead of width */
+  width: 100%; /* Added width: 100% to make it flexible */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  text-align: 10 auto;
+  margin: 0 auto; /* Center the container */
+}
+
+.main-glass-container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  max-width: 85%; /* Adjusted to max-width instead of width */
+  width: 200%; /* Added width: 100% to make it flexible */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  text-align: center;
+  margin: 0 auto; /* Center the container */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.error {
+  color: #ff6347; /* Error text color */
+  text-align: center;
+  margin-bottom: 20px; /* Adjust the margin here to create space between error and inputs */
+}
+
+button {
+  display: block;
+  margin: 0 auto; /* Center the button */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #ff6347;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+index {
+  display: block;
+  margin: 0 auto; /* Center the button */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #ff6347;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #ff4c36;
+}
+
+.full-page-wrapper {
+  width: 100%;
+  max-width: none;
+  background-color: var(--black);
+  background-image: radial-gradient(circle farthest-corner at 100% 100%, var(--gradient-blue), transparent 44%), radial-gradient(circle farthest-corner at 0% 100%, var(--gradient-red), transparent 32%);
+  color: var(--white);
+  align-items: center;
+  padding: 24px 12px;
+}
