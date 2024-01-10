@@ -11,12 +11,12 @@
   <div id="nav-content">
     <div class="nav-button" data-target="./admin/orders.php"><i class="fas fa-palette"></i><span>Orders</span></div>
     <div class="nav-button" data-target="./admin/menu.php"><i class="fas fa-images"></i><span>Menu</span></div>
-    <div class="nav-button" data-target="./admin/categories.php"><i class="fas fa-thumbtack"></i><span>Categories</span></div>
+
     <hr/>
-    <div class="nav-button" data-target="./admin/users.php"><i class="fas fa-heart"></i><span>Users</span></div>
     <div class="nav-button" data-target="./admin/customers.php"><i class="fas fa-chart-line"></i><span>Customers</span></div>
-    <div class="nav-button" data-target="./admin/staff.php"><i class="fas fa-fire"></i><span>Staff</span></div>
+
     <hr/>
+    <div class="nav-button" data-target="./admin/sys_users/users.php"><i class="fas fa-heart"></i><span>Users</span></div>
     <div class="nav-button"><a href='logout.php'><i class="fas fa-sign-out-alt" ></i><span>Log Out</span></a></div>
 
     <div id="nav-content-highlight"></div>

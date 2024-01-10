@@ -4,6 +4,7 @@ session_start();
 
 $name = $_POST['uname'];
 $password = $_POST['password'];
+$login_id = $_POST['login_id'];
 
 if (empty($name) && empty($password)) {
     header("Location: login.php?error=Both name and password are missing");

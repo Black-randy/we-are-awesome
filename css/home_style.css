@@ -16,11 +16,17 @@ body {
     color: #fff;
     padding: 20px;
     box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
+    background-color: #fff; /* Customize the background color as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a visual effect */
   }
   
   .content {
     flex: 1;
-    padding: 30px 20px 20px 305px; /* top right bottom left */
+    padding: 30px 20px 20px 250px; /* top right bottom left */
     box-sizing: border-box;
   }
   

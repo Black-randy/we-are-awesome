@@ -10,12 +10,12 @@
 
     <title>Login 👤</title>
 </head>
-<body class="bg-light">
+<body style="background: #efecff;" >
 
   <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="glass-form" style="width: 500px;">
                 <div class="card-body text-center">
                         <h2 class="card-title mb-4">Welcome!</h2>
                         <form  action="loginvarify.php" method="post">

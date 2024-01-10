@@ -1,121 +1,123 @@
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-    <title>Order Dashboard</title>
-    <style>
-    html,
-    body,
-    .intro {
-      height: 90%;
-    }
-    
-    table td,
-    table th {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    
-    .card {
-      border-radius: .5rem;
-    }
-    
-    .table-scroll {
-      border-radius: .5rem;
-    }
-    
-    thead {
-      top: 0;
-      position: sticky;
-    }
-    </style>
-</head>
-<body>
+<!-- Include Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+<!-- Include DataTables CSS and JS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <script>
-$(document).ready(function () {
-    $('.table').DataTable({
-        "order": [[4, "desc"]] // Sort by the 5th column (Order Date) in descending order
-    });
-});
+$('table').dataTable()
 </script>
 
-<?php
-include "./dbcon.php";
-?>
 
-<h2>Orders Dashboard</h2>
-
-<!-- Button to redirect to the form for adding new orders -->
-<a href="./admin/add_order_form.php"><button>Add New Order</button></a>
-
-<section class="intro">
-  <div class="bg-image h-100" >
-    <div class="mask d-flex align-items-center h-100">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <div class="card shadow-2-strong">
-              <div class="card-body p-0">
-                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
-                  <table class="table table-dark mb-0">
-                    <thead style="background-color: #393939;">
-                      <tr class="text-uppercase text-success">
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Order Type</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Pizza ID</th>
-                        <th scope="col">Order Date</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                        <?php
-                        // Fetch orders data with user names
-                        $sql = "SELECT co.Order_id, co.Order_type, pu.first_name, pu.last_name, co.Pizza_id, co.Order_date
-                                FROM customer_order co
-                                INNER JOIN public_user pu ON co.UserID = pu.UserID";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                $userName = $row['first_name'] . ' ' . $row['last_name'];
-                                echo "<tr>
-                                        <td>{$row['Order_id']}</td>
-                                        <td>{$row['Order_type']}</td>
-                                        <td>{$userName}</td>
-                                        <td>{$row['Pizza_id']}</td>
-                                        <td>{$row['Order_date']}</td>
-                                     </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='5'>No orders found</td></tr>";
-                        }
-                        ?>
-                        </tr>
+<div class="container-fluid">
+<h2>Oders Page</h2>
+<div class="row">
+	<div class="col-lg-12">
+      <a href="admin/oders_add.php"><button class="btn btn-primary float-right btn-sm" id="new_user"><i class="fa fa-plus"></i> Add New oder</button></a>
+	</div>
+	</div>
+  <br>
+    
+  <div class="container-fluid">
+  <div class="card"style="border-radius: 1.25rem;">
+			<div class="card-body">
+				<!-- <div class="table-responsive"> -->
+					<table class="table-striped table-bordered">
+						<thead>
+							<tr>
+                <th class="text-center">Order_id</th>
+                <th class="text-center">Order_type</th>
+                <th class="text-center">Pizza</th>
+                <th class="text-center">topping 1</th>
+                <th class="text-center">topping 2</th>
+                <th class="text-center">topping 3</th>
+                <th class="text-center">Food</th>
+                <th class="text-center">Order_date</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                            <?php
+                            $i = 1;
+                            include 'dbcon.php';
+                            $qry = $conn->query("SELECT * FROM customer_orders");
+                            while ($row = $qry->fetch_assoc()) :
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['Order_id'] ?></td>
+                                    <td><?php echo $row['Order_type'] ?></td>
+                                    <td><?php echo getPizzaName($row['Pizza_id'], $conn) ?></td>
+                                    <td><?php echo getToppingName($row['topping_1_id'], $conn) ?></td>
+                                    <td><?php echo getToppingName($row['topping_2_id'], $conn) ?></td>
+                                    <td><?php echo getToppingName($row['topping_3_id'], $conn) ?></td>
+                                    <td><?php echo getFoodName($row['Food_id'], $conn) ?></td>
+                                    <td><?php echo $row['Order_date'] ?></td>
+                                    <?php if ($row['status'] == 1) : ?>
+                                        <td class="text-center"><span class="badge badge-secondary">Pending</span></td>
+                                    <?php elseif ($row['status'] == 2) : ?>
+                                        <td class="text-center"><span class="badge badge-primary">Delivering</span></td>
+                                    <?php elseif ($row['status'] == 3) : ?>
+                                        <td class="text-center"><span class="badge badge-success">Confirmed</span></td>
+                                    <?php elseif ($row['status'] == 4) : ?>
+                                        <td class="text-center"><span class="badge badge-danger">Canceled</span></td>
+                                    <?php endif; ?>
+                                    <td class="text-center">
+                                        <center>
+									                      		<div class="btn-group">
+									                      		<a href="admin/oders_edit.php?Order_id=<?php echo $row['Order_id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+									                      		<a href="admin/oders_delete.php?Order_id=<=<?php echo $row['Order_id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+									                      		</div>
+									                      </center>
+                                      </td>
+                                </tr>
+                            <?php endwhile; ?>
                         </tbody>
                     </table>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
+</div>
 
 <?php
-// Close connection
-$conn->close();
+function getPizzaName($pizzaId, $conn)
+{
+    $query = $conn->query("SELECT Pizza_name FROM pizza WHERE Pizza_id = $pizzaId");
+    $result = $query->fetch_assoc();
+    return $result ? $result['Pizza_name'] : 'N/A';
+}
+
+function getToppingName($toppingId, $conn)
+{
+    $query = $conn->query("SELECT Topping_name FROM topping WHERE Topping_id = $toppingId");
+    $result = $query->fetch_assoc();
+    return $result ? $result['Topping_name'] : 'N/A';
+}
+
+function getFoodName($foodId, $conn)
+{
+    $query = $conn->query("SELECT Food_name FROM food WHERE Food_id = $foodId");
+    $result = $query->fetch_assoc();
+    return $result ? $result['Food_name'] : 'N/A';
+}
 ?>
 
 
-</body>
-</html>
+
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        //  var table = $('#ordersTable').DataTable();
+
+        // Handle click events without AJAX
+        $('#ordersTable tbody').on('click', '.edit_order', function(e) {
+            e.preventDefault();
+            var orderId = $(this).data('id');
+            location.href = 'admin/oders_edit.php?action=edit&Order_id=' + orderId;
+        });
+    });
+</script>
