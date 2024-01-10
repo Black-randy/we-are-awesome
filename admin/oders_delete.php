@@ -13,7 +13,8 @@ if(isset($_GET['Order_id'])) {
     $deleteQuery = "DELETE FROM customer_orders WHERE Order_id = '$Order_id'";
     if($conn->query($deleteQuery)) {
         // If the deletion is successful, redirect to the customers page
-        header("Location: ../home.php");
+        echo "Deleted";
+        // header("Location: ../home.php");
         exit();
     } else {
         // If an error occurs, you can handle it accordingly (display an error message, log the error, etc.)

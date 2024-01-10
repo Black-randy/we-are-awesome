@@ -13,8 +13,9 @@ if (isset($_GET['pizza_id'])) {
     $deleteQuery = "DELETE FROM pizza WHERE pizza_id = $pizzaID";
 
     if ($conn->query($deleteQuery)) {
-        // If the deletion is successful, redirect to the home page
-        header("Location: ../home.php");
+        // If the deletion is successful, redirect to the customers page
+        echo "Deleted";
+        // header("Location: ../home.php");
         exit();
     } else {
         // If an error occurs, you can handle it accordingly (display an error message, log the error, etc.)

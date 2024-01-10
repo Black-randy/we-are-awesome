@@ -1,19 +1,18 @@
 <?php
-// pizza_delete.php
+// customers_Delete.php
 
-// Check if the pizza_id is set in the URL
-if (isset($_GET['pizza_id'])) {
+// Check if the UserID is set in the URL
+if(isset($_GET['UserID'])) {
     // Include the database connection file
-    include '../dbcon.php';
+    include 'dbcon.php';
 
     // Sanitize the input to prevent SQL injection
-    $pizzaID = mysqli_real_escape_string($conn, $_GET['pizza_id']);
+    $userID = mysqli_real_escape_string($conn, $_GET['UserID']);
 
     // Perform the delete query
-    $deleteQuery = "DELETE FROM pizza WHERE pizza_id = $pizzaID";
-
-    if ($conn->query($deleteQuery)) {
-        // If the deletion is successful, redirect to the home page
+    $deleteQuery = "DELETE FROM customers WHERE UserID = $userID";
+    if($conn->query($deleteQuery)) {
+        // If the deletion is successful, redirect to the customers page
         header("Location: ../home.php");
         exit();
     } else {
@@ -24,7 +23,7 @@ if (isset($_GET['pizza_id'])) {
     // Close the database connection
     $conn->close();
 } else {
-    // If pizza_id is not set in the URL, redirect to the 404 page
+    // If UserID is not set in the URL, redirect to the customers page
     header("Location: ../404.html");
     exit();
 }
